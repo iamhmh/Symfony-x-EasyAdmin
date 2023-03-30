@@ -22,10 +22,10 @@ class CategoryCrudController extends AbstractCrudController
             IdField::new('id')->onlyOnIndex(),
             TextField::new('Name'),
             //TextField::new('Slug'),
-            SlugField::new('Slug')->setTargetFieldName('Name'),
-            TextField::new('Hn'),
+            SlugField::new('Slug')->setTargetFieldName('Name')->hideOnIndex(),
+            TextField::new('Hn')->hideOnIndex(),
             TextField::new('Title'),
-            TextEditorField::new('MetaDescription'),
+            TextEditorField::new('MetaDescription')->hideOnIndex(),
         ];
     }
 
