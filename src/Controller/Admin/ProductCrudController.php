@@ -3,7 +3,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Product;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class ProductCrudController extends AbstractCrudController
 {
@@ -12,14 +18,33 @@ class ProductCrudController extends AbstractCrudController
         return Product::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            IdField::new('id')->onlyOnIndex(),
+
+            CollectionField::new('Pictures')
+                ->setEntryIsComplex(true)
+                ->setFormType(ImageCollectionType::class)
+                ->setTemplatePath('admin/pictures.html.twig'),
+
+            TextField::new('Title'),
+
+            TextField::new('Symmary', 'Description'),
+
+            AssociationField::new('Category')
+                ->setCrudController(CategoryCrudController::class),
+
+            MoneyField::new('Price')
+                ->setCurrency('EUR')
+                ->setStoredAsCents(false),
+
+            IntegerField::new('Quantity'),
+
+            TextField::new('SKU'),
+
         ];
     }
-    */
+    
 }

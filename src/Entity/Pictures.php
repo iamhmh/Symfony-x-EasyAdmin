@@ -13,6 +13,11 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[Vich\Uploadable]
 class Pictures implements Serializable
 {
+    public function __toString()
+    {
+        return $this->imageName;
+    }
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

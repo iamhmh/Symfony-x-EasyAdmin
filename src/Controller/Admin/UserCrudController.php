@@ -46,4 +46,3 @@ class UserCrudController extends AbstractCrudController
             ->addFormTheme('@FOSCKEditor/form/ckeditor_widget.html.twig');
     }
 }
-
